@@ -5,7 +5,7 @@ import { useStore } from '../hooks/store';
 import TableCell from './TableCell';
 
 const DayTable = React.memo(props => {
-    const dispatch = useStore(false)[1];
+    const dispatch = useStore()[1];
     console.log('Day table RENDERING');
     const StyledDayTable = styled.div`
         display: flex;

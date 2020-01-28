@@ -16,7 +16,6 @@ const TableCell = styled.div`
     width: 100%;
     border-bottom: ${props => (props.heading ? '1px solid #ddd' : '1px solid #f4f4f4')};
     cursor: ${props => (props.selectable ? 'pointer' : 'inherit')};
-    transition: all 3s;
     ${props =>
         props.selectable && !props.selected
             ? `&:hover {

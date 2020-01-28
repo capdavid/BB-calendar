@@ -5,14 +5,13 @@ const storeConfig = () => {
         SET_CALENDAR: (curState, updatedState) => {
             return { calendar: updatedState, loading: false };
         },
-        SELECT_TIMESLOT: (curState, data) => {
+        SELECT_TIMESLOT: (curState, cellData) => {
             //is this okay? get arguments as an array? is an object with keys better?
             // const updatedDay = curState.calendar[data[0]];
             // const timeslotIndex = updatedDay.timeslots.findIndex(t => t.id === data[1]);
             // const updatedItem = updatedDay.timeslots[timeslotIndex];
             // updatedItem.selected = true;
-            const updatedCell = data;
-            return { selectedCell: updatedCell };
+            return { selectedCell: cellData };
         }
     };
     initStore(actions, {

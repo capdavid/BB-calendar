@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { useStore } from '../hooks/store';
 
@@ -10,14 +10,9 @@ const StyledDaysWrapper = styled.div`
     display: flex;
     position: relative;
 `;
+
 const DaysWrapper = () => {
     const state = useStore(false)[0];
-
-    useEffect(() => {
-        console.log('didMount');
-        return () => {};
-    }, []);
-    console.log('DaysWrapper rendering');
     const [scrollState, setScrollState] = useState(0);
 
     const scrollHandler = useCallback(

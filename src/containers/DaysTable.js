@@ -13,8 +13,8 @@ const StyledDaysTable = styled.div`
 `;
 
 const DaysTable = props => {
-    const state = useStore(false)[0];
-    console.log('DaysTable rendering');
+    const state = useStore()[0];
+
     const scrollBasedOnProps = () => {
         let scrollPosition;
         scrollPosition = props.scrollPosition * 33.33;

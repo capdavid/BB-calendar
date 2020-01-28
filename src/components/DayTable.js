@@ -6,7 +6,6 @@ import TableCell from './TableCell';
 
 const DayTable = React.memo(props => {
     const dispatch = useStore(false)[1];
-    console.log(props.scrollPosition);
     console.log('Day table RENDERING');
     const StyledDayTable = styled.div`
         display: flex;
@@ -19,7 +18,7 @@ const DayTable = React.memo(props => {
         /* WTF IS HAPPENING, PLEASE HELP */
         transform: ${`translateX(-${props.scrollPosition}00%)`};
         transition-property: all;
-        transition-duration: 3s;
+        transition-duration: 1s;
     `;
 
     return (

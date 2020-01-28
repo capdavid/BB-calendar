@@ -1,49 +1,32 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 
 import DayTable from '../components/DayTable';
-import ScrollButton from '../components/ScrollButton';
 import { useStore } from '../hooks/store';
 
-const DaysTable = () => {
-    const state = useStore()[0];
-    const [scrollState, setScrollState] = useState(0);
-    console.log('Days table rendering');
+const StyledDaysTable = styled.div`
+    width: 100%;
+    display: flex;
+    position: relative;
+    transform: ${props => `translateX(-${props.scrollPosition}%)`};
+    transition: all 0.5s;
+`;
 
-    const scrollHandler = useCallback(
-        direction => {
-            console.log(scrollState);
-            let scrollPos = scrollState;
-            const maxDayCount = state.calendar.length - 3;
+const DaysTable = props => {
+    const state = useStore(false)[0];
+    console.log('DaysTable rendering');
+    const scrollBasedOnProps = () => {
+        let scrollPosition;
+        scrollPosition = props.scrollPosition * 33.33;
+        return scrollPosition;
+    };
 
-            if (direction === 'left' && scrollPos > 0) {
-                scrollPos--;
-            } else if (direction !== 'left' && scrollPos < maxDayCount) {
-                scrollPos++;
-            }
-            setScrollState(scrollPos);
-        },
-        [scrollState, state.calendar.length]
-    );
+    const scrollPosition = scrollBasedOnProps();
 
     // console.log(state.scrollPosition);
-    const StyledDaysTable = styled.div`
-        width: 70%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        /* align-items: center; */
-        box-sizing: border-box;
-        overflow: hidden;
-        position: relative;
-    `;
 
     return (
-        <StyledDaysTable>
-            <ScrollButton left onClick={() => scrollHandler('left')}>
-                &lt;
-            </ScrollButton>
-            <ScrollButton onClick={scrollHandler}>></ScrollButton>
+        <StyledDaysTable scrollPosition={scrollPosition}>
             {state.calendar.map((day, index) => (
                 <DayTable
                     dayIndex={index}
@@ -52,7 +35,7 @@ const DaysTable = () => {
                     key={day.date}
                     times={day.timeslots}
                     date={day.date}
-                    scrollPosition={scrollState}
+                    // scrollPosition={scrollState}
                 />
             ))}
         </StyledDaysTable>

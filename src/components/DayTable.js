@@ -6,7 +6,7 @@ import TableCell from './TableCell';
 
 const DayTable = React.memo(props => {
     const dispatch = useStore()[1];
-    console.log('Day table RENDERING');
+
     const StyledDayTable = styled.div`
         display: flex;
         flex-grow: 1;
@@ -16,9 +16,6 @@ const DayTable = React.memo(props => {
         /* WTF IS HAPPENING, PLEASE HELP am I creating a new variable if I do (props => props.scrollPosition..?? */
         /* WTF IS HAPPENING, PLEASE HELP box example*/
         /* WTF IS HAPPENING, PLEASE HELP */
-        transform: ${`translateX(-${props.scrollPosition}00%)`};
-        transition-property: all;
-        transition-duration: 1s;
     `;
 
     return (

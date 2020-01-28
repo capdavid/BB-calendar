@@ -23,8 +23,6 @@ const DaysTable = props => {
 
     const scrollPosition = scrollBasedOnProps();
 
-    // console.log(state.scrollPosition);
-
     return (
         <StyledDaysTable scrollPosition={scrollPosition}>
             {state.calendar.map((day, index) => (
@@ -35,7 +33,6 @@ const DaysTable = props => {
                     key={day.date}
                     times={day.timeslots}
                     date={day.date}
-                    // scrollPosition={scrollState}
                 />
             ))}
         </StyledDaysTable>

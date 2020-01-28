@@ -11,7 +11,6 @@ const ScrollButton = styled.button`
     outline: none;
     z-index: 2;
     cursor: pointer;
-    transition: all 3s;
 `;
 
 export default ScrollButton;

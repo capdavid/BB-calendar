@@ -13,6 +13,9 @@ const StyledDiv = styled.div`
     box-shadow: rgba(0, 0, 0, 0.1) 0 0 17px;
     border-radius: 10px;
     overflow: hidden;
+    @media (max-width: 800px) {
+        max-width: 400px;
+    }
 `;
 
 const CalendarContent = () => (

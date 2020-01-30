@@ -18,7 +18,12 @@ const DaysWrapper = () => {
     const scrollHandler = useCallback(
         direction => {
             let scrollPos = scrollState;
-            const maxDayCount = state.calendar.length - 3;
+            let maxDayCount;
+            if (window.innerWidth < 800) {
+                maxDayCount = state.calendar.length - 2;
+            } else {
+                maxDayCount = state.calendar.length - 3;
+            }
 
             if (direction === 'left' && scrollPos > 0) {
                 scrollPos--;

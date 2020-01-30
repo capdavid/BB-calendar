@@ -16,6 +16,9 @@ const DayTable = React.memo(props => {
         /* WTF IS HAPPENING, PLEASE HELP am I creating a new variable if I do (props => props.scrollPosition..?? */
         /* WTF IS HAPPENING, PLEASE HELP box example*/
         /* WTF IS HAPPENING, PLEASE HELP */
+        @media (max-width: 800px) {
+            flex-basis: 50%;
+        }
     `;
 
     return (

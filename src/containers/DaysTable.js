@@ -8,8 +8,11 @@ const StyledDaysTable = styled.div`
     width: 100%;
     display: flex;
     position: relative;
-    transform: ${props => `translateX(-${props.scrollPosition}%)`};
+    transform: ${props => `translateX(calc(-${props.scrollPosition}*33%))`};
     transition: all 0.5s;
+    @media (max-width: 800px) {
+        transform: ${props => `translateX(calc(-${props.scrollPosition}*50%))`};
+    }
 `;
 
 const DaysTable = props => {
@@ -17,7 +20,7 @@ const DaysTable = props => {
 
     const scrollBasedOnProps = () => {
         let scrollPosition;
-        scrollPosition = props.scrollPosition * 33.33;
+        scrollPosition = props.scrollPosition;
         return scrollPosition;
     };
 

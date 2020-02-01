@@ -2,8 +2,8 @@ import React, { useEffect, Fragment } from "react";
 import styled from "@emotion/styled";
 
 import { useStore } from "../hooks/store";
-import TimesTable from "../containers/TimesTable";
-import DaysWrapper from "../containers/DaysWrapper";
+import TimesTable from "./TimesTable";
+import DaysWrapper from "./DaysWrapper";
 import Spinner from "../components/Spinner";
 
 const StyledDiv = styled.div`

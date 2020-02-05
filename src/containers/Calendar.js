@@ -18,6 +18,11 @@ const StyledDiv = styled.div`
   }
 `;
 
+const StyledErrorDiv = styled.div`
+  margin: 200px auto;
+  color: red;
+`;
+
 const CalendarContent = () => (
   <Fragment>
     <TimesTable />
@@ -29,18 +34,26 @@ const Calendar = props => {
   const [store, dispatch] = useStore();
 
   useEffect(() => {
-    fetch("https://interview-calendar-backend.herokuapp.com/api/calendar")
-      .then(response => response.json())
-      .then(responseData => {
-        dispatch("SET_CALENDAR", responseData.calendar);
-      })
-      .catch(err => console.log(err));
+    dispatch("FETCH_CALENDAR", dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <StyledDiv>{store.loading ? <Spinner /> : <CalendarContent />}</StyledDiv>
-  );
+  const renderBasedOnStore = () => {
+    if (store.error) {
+      return (
+        //Is this okay? styles like this?
+        <StyledErrorDiv>
+          Something went wrong.. Please reload the page.
+        </StyledErrorDiv>
+      );
+    } else if (store.loading) {
+      return <Spinner />;
+    } else {
+      return <CalendarContent />;
+    }
+  };
+
+  return <StyledDiv>{renderBasedOnStore()}</StyledDiv>;
 };
 
 export default Calendar;

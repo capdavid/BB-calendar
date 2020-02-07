@@ -23,37 +23,38 @@ const StyledErrorDiv = styled.div`
   color: red;
 `;
 
-const CalendarContent = () => (
-  <Fragment>
-    <TimesTable />
-    <DaysWrapper />
-  </Fragment>
-);
-
-const Calendar = props => {
+const Calendar = () => {
   const [store, dispatch] = useStore();
 
   useEffect(() => {
-    dispatch("FETCH_CALENDAR", dispatch);
+    dispatch("FETCH_CALENDAR_REQUEST");
+    fetch("https://interview-calendar-backend.herokuapp.com/api/calendar")
+      .then(response => response.json())
+      .then(responseData => {
+        dispatch("FETCH_CALENDAR_SUCCESS", responseData.calendar);
+      })
+      .catch(err => dispatch("FETCH_CALENDAR_FAIL", err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderBasedOnStore = () => {
-    if (store.error) {
-      return (
-        //Is this okay? styles like this?
+  return (
+    <StyledDiv>
+      {store.error && (
         <StyledErrorDiv>
           Something went wrong.. Please reload the page.
         </StyledErrorDiv>
-      );
-    } else if (store.loading) {
-      return <Spinner />;
-    } else {
-      return <CalendarContent />;
-    }
-  };
+      )}
 
-  return <StyledDiv>{renderBasedOnStore()}</StyledDiv>;
+      {store.loading && !store.error && <Spinner />}
+
+      {!store.loading && !store.error && (
+        <Fragment>
+          <TimesTable />
+          <DaysWrapper />
+        </Fragment>
+      )}
+    </StyledDiv>
+  );
 };
 
 export default Calendar;

@@ -6,7 +6,7 @@ import { useStore } from "../hooks/store";
 import TableCell from "../components/TableCell";
 
 export const TimesTable = () => {
-  const store = useStore()[0];
+  const [store] = useStore();
 
   const StyledTimeTable = styled.div`
     display: flex;
@@ -19,14 +19,17 @@ export const TimesTable = () => {
     z-index: 1;
   `;
 
+  const selectTimeHighlight = index => {
+    return index === store.selectedCell[1] ? true : false;
+  };
+
   return (
     <StyledTimeTable>
       <TableCell heading>Zvolte čas</TableCell>
-      {store.calendar[0]?.timeslots.map((time, index) => (
-        <TableCell
-          key={time.id}
-          selectedTime={index === store.selectedCell[1] ? true : false}
-        >{`${time.from} - ${time.to}`}</TableCell>
+      {store.calendar[0]?.timeslots.map(({ id, from, to }, index) => (
+        <TableCell key={id} selectedTime={selectTimeHighlight(index)}>
+          {`${from} - ${to}`}
+        </TableCell>
       ))}
     </StyledTimeTable>
   );

@@ -12,8 +12,8 @@ const storeConfig = () => {
       console.log(err);
       return { error: true };
     },
-    SELECT_TIMESLOT: (curState, cellData) => {
-      return { selectedCell: cellData };
+    SELECT_TIMESLOT: (curState, dayIndex, cellIndex) => {
+      return { selectedCell: [dayIndex, cellIndex] };
     }
   };
   initStore(actions, {

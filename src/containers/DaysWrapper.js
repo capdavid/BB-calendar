@@ -12,7 +12,11 @@ const StyledDaysWrapper = styled.div`
 `;
 
 const DaysWrapper = () => {
-  const store = useStore()[0];
+  const [
+    {
+      calendar: { length: calendarLenght }
+    }
+  ] = useStore();
   const [scrollState, setScrollState] = useState(0);
 
   const scrollHandler = useCallback(
@@ -20,9 +24,9 @@ const DaysWrapper = () => {
       let scrollPos = scrollState;
       let maxDayCount;
       if (window.innerWidth < 800) {
-        maxDayCount = store.calendar.length - 2;
+        maxDayCount = calendarLenght - 2;
       } else {
-        maxDayCount = store.calendar.length - 3;
+        maxDayCount = calendarLenght - 3;
       }
 
       if (direction === "left" && scrollPos > 0) {
@@ -32,7 +36,7 @@ const DaysWrapper = () => {
       }
       setScrollState(scrollPos);
     },
-    [scrollState, store.calendar.length]
+    [scrollState, calendarLenght]
   );
   return (
     <StyledDaysWrapper>

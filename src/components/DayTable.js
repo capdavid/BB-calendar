@@ -2,13 +2,11 @@
 
 import React from "react";
 import styled from "@emotion/styled";
-import { useStore } from "../hooks/store";
 
 import TableCell from "./TableCell";
 
 const DayTable = React.memo(props => {
-  const [_s, dispatch] = useStore();
-  const { dayIndex, date, times, selectedCell } = props;
+  const { selectCellHandler, date, times, selectedCell } = props;
 
   const StyledDayTable = styled.div`
     display: flex;
@@ -33,19 +31,12 @@ const DayTable = React.memo(props => {
       <TableCell heading>{reformattedDate()}</TableCell>
 
       {times.map(({ status, id }, cellIndex) => {
-        const timeslotSelectHandler = () => {
-          return (
-            status === "free" &&
-            dispatch("SELECT_TIMESLOT", dayIndex, cellIndex)
-          );
-        };
-
-        const isSelectable = status === "free" ? true : false;
-        const selectedIndex = cellIndex === selectedCell ? true : false;
+        const isSelectable = status === "free";
+        const selectedIndex = cellIndex === selectedCell;
 
         return (
           <TableCell
-            onClick={timeslotSelectHandler}
+            onClick={() => selectCellHandler(status, cellIndex)}
             selectable={isSelectable}
             selected={selectedIndex}
             key={id}

@@ -16,17 +16,27 @@ const StyledDaysTable = styled.div`
 `;
 
 const DaysTable = props => {
-  const [store] = useStore();
+  const [store, dispatch] = useStore();
 
   return (
     <StyledDaysTable {...props}>
       {store.calendar.map(({ date, timeslots }, index) => {
-        const selectedIndex =
-          store.selectedCell[0] === index ? store.selectedCell[1] : null;
+        const timeslotSelectHandler = (status, cellIndex, dayIndex = index) => {
+          return (
+            status === "free" &&
+            dispatch("SELECT_TIMESLOT", dayIndex, cellIndex)
+          );
+        };
+
+        const selectedCellIndex =
+          store.selectedCell.dayIndex === index
+            ? store.selectedCell.cellIndex
+            : null;
+
         return (
           <DayTable
-            dayIndex={index}
-            selectedCell={selectedIndex}
+            selectCellHandler={timeslotSelectHandler}
+            selectedCell={selectedCellIndex}
             key={date}
             times={timeslots}
             date={date}

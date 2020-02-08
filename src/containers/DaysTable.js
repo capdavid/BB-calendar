@@ -16,7 +16,7 @@ const StyledDaysTable = styled.div`
 `;
 
 const DaysTable = props => {
-  const store = useStore()[0];
+  const [store] = useStore();
 
   return (
     <StyledDaysTable {...props}>

@@ -21,7 +21,7 @@ const DaysTable = props => {
   return (
     <StyledDaysTable {...props}>
       {store.calendar.map(({ date, timeslots }, index) => {
-        const timeslotSelectHandler = (status, cellIndex, dayIndex = index) => {
+        const cellSelectHandler = (status, cellIndex, dayIndex = index) => {
           return (
             status === "free" &&
             dispatch("SELECT_TIMESLOT", dayIndex, cellIndex)
@@ -35,7 +35,7 @@ const DaysTable = props => {
 
         return (
           <DayTable
-            selectCellHandler={timeslotSelectHandler}
+            onCellSelect={cellSelectHandler}
             selectedCell={selectedCellIndex}
             key={date}
             times={timeslots}

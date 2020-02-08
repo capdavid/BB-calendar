@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import TableCell from "./TableCell";
 
 const DayTable = React.memo(props => {
-  const { selectCellHandler, date, times, selectedCell } = props;
+  const { onCellSelect, date, times, selectedCell } = props;
 
   const StyledDayTable = styled.div`
     display: flex;
@@ -36,7 +36,7 @@ const DayTable = React.memo(props => {
 
         return (
           <TableCell
-            onClick={() => selectCellHandler(status, cellIndex)}
+            onClick={() => onCellSelect(status, cellIndex)}
             selectable={isSelectable}
             selected={selectedIndex}
             key={id}

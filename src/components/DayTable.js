@@ -21,30 +21,39 @@ const DayTable = React.memo(props => {
     }
   `;
 
-  const timeslotSelectHadnler = (status, cellIndex) => {
-    return (
-      status === "free" && dispatch("SELECT_TIMESLOT", dayIndex, cellIndex)
-    );
+  const reformattedDate = () => {
+    return date
+      .split("-")
+      .reverse()
+      .join("/");
   };
 
   return (
     <StyledDayTable>
-      <TableCell heading>
-        {date
-          .split("-")
-          .reverse()
-          .join("/")}
-      </TableCell>
-      {times.map(({ status, id }, index) => (
-        <TableCell
-          onClick={() => timeslotSelectHadnler(status, index)}
-          selectable={status === "free" ? true : false}
-          selected={index === selectedCell ? true : false}
-          key={id}
-        >
-          {status}
-        </TableCell>
-      ))}
+      <TableCell heading>{reformattedDate()}</TableCell>
+
+      {times.map(({ status, id }, cellIndex) => {
+        const timeslotSelectHandler = () => {
+          return (
+            status === "free" &&
+            dispatch("SELECT_TIMESLOT", dayIndex, cellIndex)
+          );
+        };
+
+        const isSelectable = status === "free" ? true : false;
+        const selectedIndex = cellIndex === selectedCell ? true : false;
+
+        return (
+          <TableCell
+            onClick={timeslotSelectHandler}
+            selectable={isSelectable}
+            selected={selectedIndex}
+            key={id}
+          >
+            {status}
+          </TableCell>
+        );
+      })}
     </StyledDayTable>
   );
 });

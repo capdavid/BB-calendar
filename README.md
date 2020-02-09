@@ -1,6 +1,6 @@
-##This is a task project Blueberry uses for its 2nd round interviews, I wanted to test my skills so I completed it.
+**This is a task project Blueberry uses for its 2nd round interviews, I wanted to test my skills so I completed it.**
 
-Live version: https://bb-calendar.netlify.com/
+**Live version:** https://bb-calendar.netlify.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

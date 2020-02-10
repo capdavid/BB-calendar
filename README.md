@@ -1,4 +1,4 @@
-**This is a task project Blueberry uses for its 2nd round interviews, I wanted to test my skills so I completed it.**
+**This is dummy calendar, where you can select a delivery timeslot, wrote in React with a custom hook store component**
 
 **Live version:** https://bb-calendar.netlify.com/  
 <br>

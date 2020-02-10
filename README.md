@@ -1,3 +1,12 @@
+**This is dummy calendar, where you can select a delivery timeslot, wrote in React with a custom hook store component**
+
+**Live version:** https://bb-calendar.netlify.com/  
+<br>
+
+*************************
+
+<br>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

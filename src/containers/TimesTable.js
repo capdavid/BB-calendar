@@ -20,8 +20,9 @@ export const TimesTable = () => {
   `;
 
   const selectTimeHighlight = index => {
-    return index === store.selectedCell[1] ? true : false;
+    return index === store.selectedCell.cellIndex ? true : false;
   };
+  console.log(store);
 
   return (
     <StyledTimeTable>

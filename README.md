@@ -1,4 +1,6 @@
-**This is dummy calendar, where you can select a delivery timeslot, wrote in React with a custom hook store component**
+**This is dummy calendar, where you can select a delivery timeslot, wrote in React, with a custom hook store component**
+It's based on a task my company uses for 2nd round interviews of junior React developers.
+https://docs.google.com/document/d/1Yy7BiTzNX9lDQdK3bJVut-r4ExNCa_upT-syWmiGZYQ/edit?usp=sharing
 
 **Live version:** https://bb-calendar.netlify.com/  
 <br>
